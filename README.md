@@ -11,7 +11,7 @@ An unofficial `Slay the Spire 2` character mod that lets you play as the Emperor
 
 ## Requirements
 
-- Slay the Spire 2 public branch, version `0.107.1` or later.
+- Slay the Spire 2 public branch, version `0.107.1` (Cant play in Beta Ver.).
 - BaseLib `3.3.6` or later.
 - .NET 9 SDK and Godot 4.5.1 Mono to build from source.
 
