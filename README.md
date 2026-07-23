@@ -45,6 +45,5 @@ Current version: `v0.1.2`
 
 The published mod is available on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3766953732).
 
-This is an unofficial fan project. Slay the Spire and Slay the Spire 2 are properties of Mega Crit. Warhammer 40,000 names, settings, and trademarks are properties of Games Workshop. This project is not affiliated with or endorsed by either company.
+This is an unofficial, non-commercial fan-made mod. It is not affiliated with or endorsed by Games Workshop or Mega Crit. Warhammer 40,000 and related names, characters, and imagery belong to their respective rights holders. If a rights holder requests removal or modification, this item will be made private and removed promptly.
 
-Before making a public repository or release, verify that every included visual asset may be redistributed. Do not publish original game files or third-party artwork without permission.
