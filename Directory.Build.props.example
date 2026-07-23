@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- Copy this file to Directory.Build.props, then set your Godot 4.5.1 Mono executable path. -->
+    <GodotPath>C:/path/to/Godot_v4.5.1-stable_mono_console.exe</GodotPath>
+  </PropertyGroup>
+</Project>

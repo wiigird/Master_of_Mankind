@@ -1,0 +1,16 @@
+{
+  "MASTER_OF_MANKIND-EMPEROR.title": "황제",
+  "MASTER_OF_MANKIND-EMPEROR.titleObject": "황제",
+  "MASTER_OF_MANKIND-EMPEROR.description": "인류의 주인. 다가올 전투의 형상을 읽고 현재의 희생을 미래의 명령으로 바꿉니다.",
+  "MASTER_OF_MANKIND-EMPEROR.pronounSubject": "그",
+  "MASTER_OF_MANKIND-EMPEROR.pronounObject": "그를",
+  "MASTER_OF_MANKIND-EMPEROR.pronounPossessive": "그의 것",
+  "MASTER_OF_MANKIND-EMPEROR.possessiveAdjective": "그의",
+  "MASTER_OF_MANKIND-EMPEROR.goldMonologue": "[sine]+황금 또한 통합을 위한 도구일 뿐이다.+[/sine]",
+  "MASTER_OF_MANKIND-EMPEROR.eventDeathPrevention": "+인류의 과업은 아직 끝나지 않았다.+",
+  "MASTER_OF_MANKIND-EMPEROR.aromaPrinciple": "[sine][gold]+군주의 빛이 어둠을 가른다.+[/gold][/sine]",
+  "MASTER_OF_MANKIND-EMPEROR.cardsModifierTitle": "황제 카드",
+  "MASTER_OF_MANKIND-EMPEROR.cardsModifierDescription": "이제 보상과 상점에 황제 카드가 등장합니다.",
+  "MASTER_OF_MANKIND-EMPEROR.banter.alive.endTurnPing": "+미래는 명한 대로 흐른다.+",
+  "MASTER_OF_MANKIND-EMPEROR.banter.dead.endTurnPing": "+...+"
+}

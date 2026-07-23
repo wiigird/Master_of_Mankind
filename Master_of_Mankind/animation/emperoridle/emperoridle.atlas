@@ -1,0 +1,76 @@
+
+emperoridle_tex.png
+size: 4096,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+image-Photoroom (15)
+  rotate: false
+  xy: 1,1
+  size: 941,1672
+  orig: 941,1672
+  offset:0,0
+  index: -1
+우측발-Photoroom
+  rotate: false
+  xy: 2879,1378
+  size: 465,528
+  orig: 465,528
+  offset:0,0
+  index: -1
+우측허벅지-Photoroom
+  rotate: false
+  xy: 2508,1421
+  size: 344,511
+  orig: 344,511
+  offset:0,0
+  index: -1
+왼쪽발-Photoroom
+  rotate: false
+  xy: 944,1539
+  size: 336,453
+  orig: 336,453
+  offset:0,0
+  index: -1
+왼쪽허벅지-Photoroom
+  rotate: false
+  xy: 1970,1378
+  size: 536,557
+  orig: 536,557
+  offset:0,0
+  index: -1
+다리망토
+  rotate: false
+  xy: 1970,732
+  size: 524,644
+  orig: 524,644
+  offset:0,0
+  index: -1
+오른팔
+  rotate: false
+  xy: 2508,732
+  size: 369,687
+  orig: 369,687
+  offset:0,0
+  index: -1
+왼쪽윗팔
+  rotate: false
+  xy: 1282,1539
+  size: 384,299
+  orig: 384,299
+  offset:0,0
+  index: -1
+image-Photoroom (13)
+  rotate: false
+  xy: 944,1
+  size: 1024,1536
+  orig: 1024,1536
+  offset:0,0
+  index: -1
+왼팔
+  rotate: false
+  xy: 1970,1
+  size: 579,729
+  orig: 579,729
+  offset:0,0
+  index: -1

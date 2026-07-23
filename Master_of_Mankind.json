@@ -1,0 +1,14 @@
+﻿{
+  "id": "Master_of_Mankind",
+  "name": "Master_of_Mankind",
+  "author": "wiigird",
+  "description": "Play as the Emperor of Mankind. Command Decrees, retain cards, and reveal enemy actions.",
+  "version": "v0.1.2",
+  "min_game_version": "0.107.1",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    {"id": "BaseLib", "min_version": "3.3.6"}
+  ],
+  "affects_gameplay": true
+}

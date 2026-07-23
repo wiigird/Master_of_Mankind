@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://Master_of_Mankind/images/rest_site/emperor_rest_site.png" id="1_rest"]
+
+[node name="EmperorRestSite" type="Node2D"]
+scale = Vector2(0.76, 0.76)
+
+[node name="RestSiteSprite" type="TextureRect" parent="."]
+offset_left = -340.0
+offset_top = -530.0
+offset_right = 310.0
+offset_bottom = 120.0
+mouse_filter = 2
+texture = ExtResource("1_rest")
+expand_mode = 1
+
+[node name="ControlRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -330.0
+offset_top = -470.0
+offset_right = 300.0
+offset_bottom = 100.0

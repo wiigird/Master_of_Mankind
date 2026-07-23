@@ -1,0 +1,13 @@
+{
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0.char": "[sine]+이 첨탑은 인류의 미래에 생긴 결함이다. 내가 바로잡겠다.+[/sine]",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0.next": "계속",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-1.ancient": "인류가 마치 네 명령을 따라야 하는 것처럼 말하는군.",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0r.char": "[sine]+이 길의 끝을 이미 보았다. 비켜라.+[/sine]",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0r.next": "전진",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-1r.ancient": "그렇다면 예지가 얼마나 하찮은지 직접 배워라.",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-attack": "공격",
+  "MASTER_OF_MANKIND-ANCIENT_BLADE_UPGRADE.title": "불타는 검 강화",
+  "MASTER_OF_MANKIND-ANCIENT_BLADE_UPGRADE.description": "[gold]불타는 검[/gold]을 [gold]찬란한 황제의 불타는 검[/gold]으로 교체합니다.",
+  "MASTER_OF_MANKIND-ANCIENT_FORESIGHT_UPGRADE.title": "황제의 예지 강화",
+  "MASTER_OF_MANKIND-ANCIENT_FORESIGHT_UPGRADE.description": "일반 강화 여부와 관계없이 [gold]황제의 예지[/gold]를 [gold]만 갈래의 미래[/gold]로 교체합니다."
+}

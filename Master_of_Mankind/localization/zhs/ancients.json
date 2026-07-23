@@ -1,0 +1,13 @@
+{
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0.char": "[sine]这座尖塔是人类未来的缺陷。我会修正它。[/sine]",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0.next": "继续",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-1.ancient": "你谈论人类的口气，仿佛人类由你统御。",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0r.char": "[sine]我已见过这条道路的终点。让开。[/sine]",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0r.next": "前进",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-1r.ancient": "那就来学学，预见究竟有多无用。",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-attack": "攻击",
+  "MASTER_OF_MANKIND-ANCIENT_BLADE_UPGRADE.title": "完善燃烧之刃",
+  "MASTER_OF_MANKIND-ANCIENT_BLADE_UPGRADE.description": "将[gold]燃烧之刃[/gold]替换为[gold]帝皇的耀光燃烧之刃[/gold]。",
+  "MASTER_OF_MANKIND-ANCIENT_FORESIGHT_UPGRADE.title": "完善帝皇预见",
+  "MASTER_OF_MANKIND-ANCIENT_FORESIGHT_UPGRADE.description": "将[gold]帝皇预见[/gold]（无论是否升级）替换为[gold]万般未来[/gold]。"
+}

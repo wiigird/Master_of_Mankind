@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Master_of_MankindCode/Nodes/EmperorMerchantCharacter.cs" id="1_merchant"]
+[ext_resource type="PackedScene" path="res://Master_of_Mankind/animation/emperoridle/emperoridle_node.tscn" id="2_visuals"]
+
+[node name="EmperorMerchant" type="Node2D"]
+script = ExtResource("1_merchant")
+
+[node name="SpineSprite" parent="." instance=ExtResource("2_visuals")]
+position = Vector2(0, 0)
+scale = Vector2(0.6, 0.6)
+unique_name_in_owner = true

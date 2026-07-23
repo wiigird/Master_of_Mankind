@@ -1,0 +1,33 @@
+.godot/
+tmp/
+export_templates/
+bin/
+/obj/
+/android/
+.git/
+.idea/
+.vs/
+publish/
+Properties/
+packages/
+.editorconfig
+*.user
+*.suo
+*.userprefs
+*.sln.DotSettings
+*.cs.uid
+*.import
+*.pck
+*.tmp.pck
+Directory.Build.props
+local.props
+AGENTS.md
+__pycache__/
+
+# Workshop-only promotional source files.
+WorkshopAssets/
+
+# Unused source assets excluded from SlimExport.
+Master_of_Mankind/images/characters/
+Master_of_Mankind/images/charui/char_select_bg_emperor_orig.png
+Master_of_Mankind/images/charui/char_select_bg_emperor_simplified*.png

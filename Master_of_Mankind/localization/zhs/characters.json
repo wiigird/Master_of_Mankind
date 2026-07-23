@@ -1,0 +1,16 @@
+{
+  "MASTER_OF_MANKIND-EMPEROR.title": "帝皇",
+  "MASTER_OF_MANKIND-EMPEROR.titleObject": "帝皇",
+  "MASTER_OF_MANKIND-EMPEROR.description": "人类之主。他洞悉未来战局，将当下的牺牲化作未来的号令。",
+  "MASTER_OF_MANKIND-EMPEROR.pronounSubject": "他",
+  "MASTER_OF_MANKIND-EMPEROR.pronounObject": "他",
+  "MASTER_OF_MANKIND-EMPEROR.pronounPossessive": "他的",
+  "MASTER_OF_MANKIND-EMPEROR.possessiveAdjective": "他的",
+  "MASTER_OF_MANKIND-EMPEROR.goldMonologue": "[sine]+黄金不过是统一的另一种工具。+[/sine]",
+  "MASTER_OF_MANKIND-EMPEROR.eventDeathPrevention": "+人类的事业尚未完成。+",
+  "MASTER_OF_MANKIND-EMPEROR.aromaPrinciple": "[sine][gold]+主宰之光刺破黑暗。+[/gold][/sine]",
+  "MASTER_OF_MANKIND-EMPEROR.cardsModifierTitle": "帝皇卡牌",
+  "MASTER_OF_MANKIND-EMPEROR.cardsModifierDescription": "帝皇卡牌现在会出现在奖励和商店中。",
+  "MASTER_OF_MANKIND-EMPEROR.banter.alive.endTurnPing": "+未来正如既定般推进。+",
+  "MASTER_OF_MANKIND-EMPEROR.banter.dead.endTurnPing": "+...+"
+}

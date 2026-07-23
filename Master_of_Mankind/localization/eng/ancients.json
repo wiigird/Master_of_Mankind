@@ -1,0 +1,13 @@
+{
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0.char": "[sine]This Spire is a flaw in humanity's future. I will correct it.[/sine]",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0.next": "Continue",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-1.ancient": "You speak of humanity as though it were yours to command.",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0r.char": "[sine]I have seen the end of this path. Stand aside.[/sine]",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-0r.next": "Advance",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-1r.ancient": "Then come and learn how little foresight is worth.",
+  "THE_ARCHITECT.talk.MASTER_OF_MANKIND-EMPEROR.0-attack": "Attack",
+  "MASTER_OF_MANKIND-ANCIENT_BLADE_UPGRADE.title": "Perfect the Burning Blade",
+  "MASTER_OF_MANKIND-ANCIENT_BLADE_UPGRADE.description": "Replace [gold]The Burning Blade[/gold] with [gold]The Emperor's Radiant Burning Blade[/gold].",
+  "MASTER_OF_MANKIND-ANCIENT_FORESIGHT_UPGRADE.title": "Perfect the Emperor's Foresight",
+  "MASTER_OF_MANKIND-ANCIENT_FORESIGHT_UPGRADE.description": "Replace [gold]The Emperor's Foresight[/gold], upgraded or not, with [gold]Ten Thousand Futures[/gold]."
+}

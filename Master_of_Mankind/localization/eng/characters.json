@@ -1,0 +1,16 @@
+{
+  "MASTER_OF_MANKIND-EMPEROR.title": "The Emperor",
+  "MASTER_OF_MANKIND-EMPEROR.titleObject": "the Emperor",
+  "MASTER_OF_MANKIND-EMPEROR.description": "The Master of Mankind. He reads the shape of battles to come and turns present sacrifice into future command.",
+  "MASTER_OF_MANKIND-EMPEROR.pronounSubject": "he",
+  "MASTER_OF_MANKIND-EMPEROR.pronounObject": "him",
+  "MASTER_OF_MANKIND-EMPEROR.pronounPossessive": "his",
+  "MASTER_OF_MANKIND-EMPEROR.possessiveAdjective": "his",
+  "MASTER_OF_MANKIND-EMPEROR.goldMonologue": "[sine]+Gold is merely another instrument of unity.+[/sine]",
+  "MASTER_OF_MANKIND-EMPEROR.eventDeathPrevention": "+Humanity's work is not yet complete.+",
+  "MASTER_OF_MANKIND-EMPEROR.aromaPrinciple": "[sine][gold]+A sovereign light cuts through the dark.+[/gold][/sine]",
+  "MASTER_OF_MANKIND-EMPEROR.cardsModifierTitle": "Emperor Cards",
+  "MASTER_OF_MANKIND-EMPEROR.cardsModifierDescription": "Emperor cards will now appear in rewards and shops.",
+  "MASTER_OF_MANKIND-EMPEROR.banter.alive.endTurnPing": "+The future proceeds as ordained.+",
+  "MASTER_OF_MANKIND-EMPEROR.banter.dead.endTurnPing": "+...+"
+}
