@@ -65,11 +65,11 @@ public sealed class LightningClaw() : Master_of_MankindCard(1, CardType.Attack, 
 public sealed class PsychicLance() : Master_of_MankindCard(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyNextRevealedActionIsKnownNonAttack(state);
+        && ForesightPredictionService.AnyNextRevealedActionIsKnownNonAttack(state, Owner.Creature);
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(15m, ValueProp.Move), new EnergyVar(1)];
     protected override async Task OnPlay(PlayerChoiceContext c, CardPlay p)
-    { ArgumentNullException.ThrowIfNull(p.Target); bool gain = ForesightPredictionService.IsNextRevealedActionKnownNonAttack(p.Target); await CommonActions.CardAttack(this, p).Execute(c); if (gain) await PlayerCmd.GainEnergy(1, Owner); }
+    { ArgumentNullException.ThrowIfNull(p.Target); bool gain = ForesightPredictionService.IsNextRevealedActionKnownNonAttack(p.Target, Owner.Creature); await CommonActions.CardAttack(this, p).Execute(c); if (gain) await PlayerCmd.GainEnergy(1, Owner); }
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(5);
 }
 
@@ -78,11 +78,11 @@ public sealed class PsychicLance() : Master_of_MankindCard(2, CardType.Attack, C
 public sealed class BaneOfTheTraitor() : Master_of_MankindCard(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyNextRevealedActionIsKnownNonAttack(state);
+        && ForesightPredictionService.AnyNextRevealedActionIsKnownNonAttack(state, Owner.Creature);
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9m, ValueProp.Move)];
     protected override Task OnPlay(PlayerChoiceContext c, CardPlay p)
-    { ArgumentNullException.ThrowIfNull(p.Target); int hits = ForesightPredictionService.IsNextRevealedActionKnownNonAttack(p.Target) ? 2 : 1; return DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(hits).FromCard(this).Targeting(p.Target).Execute(c); }
+    { ArgumentNullException.ThrowIfNull(p.Target); int hits = ForesightPredictionService.IsNextRevealedActionKnownNonAttack(p.Target, Owner.Creature) ? 2 : 1; return DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(hits).FromCard(this).Targeting(p.Target).Execute(c); }
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(3);
 }
 
@@ -203,12 +203,12 @@ public sealed class AegisOfTheCustodes() : Master_of_MankindCard(2, CardType.Ski
 public sealed class WebwayFeint() : Master_of_MankindCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state);
+        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state, Owner.Creature);
 
     public override bool GainsBlock => true;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(8m, ValueProp.Move), new CardsVar(1)];
     protected override async Task OnPlay(PlayerChoiceContext c, CardPlay p)
-    { bool draw = CombatState is { } state && ForesightPredictionService.AnyNextRevealedActionIsAttack(state); await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, p); if (draw) await CardPileCmd.Draw(c, DynamicVars.Cards.IntValue, Owner); }
+    { bool draw = CombatState is { } state && ForesightPredictionService.AnyNextRevealedActionIsAttack(state, Owner.Creature); await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, p); if (draw) await CardPileCmd.Draw(c, DynamicVars.Cards.IntValue, Owner); }
     protected override void OnUpgrade() { DynamicVars.Block.UpgradeValueBy(3); DynamicVars.Cards.UpgradeValueBy(1); }
 }
 
@@ -238,12 +238,12 @@ public sealed class CalculatedSacrifice() : Master_of_MankindCard(0, CardType.Sk
 public sealed class ForeseenDoom() : Master_of_MankindCard(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyKnownNextAction(state);
+        && ForesightPredictionService.AnyKnownNextAction(state, Owner.Creature);
 
     public override bool GainsBlock => true;
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("AttackBlock", 13m), new CardsVar(2), new BlockVar(7m, ValueProp.Move)];
     protected override async Task OnPlay(PlayerChoiceContext c, CardPlay p)
-    { ArgumentNullException.ThrowIfNull(p.Target); if (ForesightPredictionService.IsNextRevealedActionAttack(p.Target)) await CreatureCmd.GainBlock(Owner.Creature, DynamicVars["AttackBlock"].BaseValue, ValueProp.Move, p); else if (ForesightPredictionService.IsNextRevealedActionKnownNonAttack(p.Target)) await CardPileCmd.Draw(c, DynamicVars.Cards.IntValue, Owner); else await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, p); }
+    { ArgumentNullException.ThrowIfNull(p.Target); if (ForesightPredictionService.IsNextRevealedActionAttack(p.Target, Owner.Creature)) await CreatureCmd.GainBlock(Owner.Creature, DynamicVars["AttackBlock"].BaseValue, ValueProp.Move, p); else if (ForesightPredictionService.IsNextRevealedActionKnownNonAttack(p.Target, Owner.Creature)) await CardPileCmd.Draw(c, DynamicVars.Cards.IntValue, Owner); else await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, p); }
     protected override void OnUpgrade() { DynamicVars["AttackBlock"].UpgradeValueBy(4); DynamicVars.Cards.UpgradeValueBy(1); DynamicVars.Block.UpgradeValueBy(2); }
 }
 

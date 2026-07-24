@@ -34,8 +34,7 @@ internal static class EmperorArchaicToothTransformedCardPatch
 
         TenThousandFutures replacement =
             starterCard.Owner.RunState.CreateCard<TenThousandFutures>(starterCard.Owner);
-        if (starterCard.IsUpgraded)
-            CardCmd.Upgrade(replacement);
+        CardCmd.Upgrade(replacement);
 
         __result = replacement;
         return false;

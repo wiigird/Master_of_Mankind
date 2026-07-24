@@ -21,7 +21,7 @@ public sealed class InevitableVictory : Master_of_MankindCard
     public InevitableVictory() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyRevealedActionIsKnown(state);
+        && ForesightPredictionService.AnyRevealedActionIsKnown(state, Owner.Creature);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -47,5 +47,7 @@ public sealed class InevitableVictory : Master_of_MankindCard
     }
 
     private static decimal CountRevealedActions(CardModel card, Creature? target) =>
-        target is null ? 0m : Math.Min(ForesightPredictionService.CountRevealedActions(target), 3);
+        target is null
+            ? 0m
+            : Math.Min(ForesightPredictionService.CountRevealedActions(target, card.Owner.Creature), 3);
 }

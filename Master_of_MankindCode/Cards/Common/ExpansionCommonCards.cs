@@ -36,13 +36,13 @@ public sealed class CustodianOnslaught() : Master_of_MankindCard(2, CardType.Att
 public sealed class BoltOfUnification() : Master_of_MankindCard(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyNextRevealedActionIsKnownNonAttack(state);
+        && ForesightPredictionService.AnyNextRevealedActionIsKnownNonAttack(state, Owner.Creature);
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move), new CardsVar(1)];
     protected override async Task OnPlay(PlayerChoiceContext c, CardPlay p)
     {
         ArgumentNullException.ThrowIfNull(p.Target);
-        bool draw = ForesightPredictionService.IsNextRevealedActionKnownNonAttack(p.Target);
+        bool draw = ForesightPredictionService.IsNextRevealedActionKnownNonAttack(p.Target, Owner.Creature);
         await CommonActions.CardAttack(this, p).Execute(c);
         if (draw) await CardPileCmd.Draw(c, DynamicVars.Cards.IntValue, Owner);
     }
@@ -113,14 +113,15 @@ public sealed class TacticaImperialis() : Master_of_MankindCard(0, CardType.Skil
 public sealed class WardOfTerra() : Master_of_MankindCard(0, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state);
+        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state, Owner.Creature);
 
     public override bool GainsBlock => true;
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new BlockVar(4m, ValueProp.Move), new DynamicVar("AttackBlock", 7m)];
     protected override Task OnPlay(PlayerChoiceContext c, CardPlay p)
     {
-        decimal block = CombatState is { } state && ForesightPredictionService.AnyNextRevealedActionIsAttack(state)
+        decimal block = CombatState is { } state
+                        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state, Owner.Creature)
             ? DynamicVars["AttackBlock"].BaseValue : DynamicVars.Block.BaseValue;
         return CreatureCmd.GainBlock(Owner.Creature, block, ValueProp.Move, p);
     }

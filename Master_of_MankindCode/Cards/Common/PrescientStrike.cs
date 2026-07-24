@@ -21,7 +21,7 @@ public sealed class PrescientStrike : Master_of_MankindCard
     public PrescientStrike() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state);
+        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state, Owner.Creature);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -32,7 +32,9 @@ public sealed class PrescientStrike : Master_of_MankindCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
-        bool shouldApplyWeak = ForesightPredictionService.IsNextRevealedActionAttack(cardPlay.Target);
+        bool shouldApplyWeak = ForesightPredictionService.IsNextRevealedActionAttack(
+            cardPlay.Target,
+            Owner.Creature);
 
         await CommonActions.CardAttack(this, cardPlay)
             .WithHitFx("vfx/vfx_attack_slash")

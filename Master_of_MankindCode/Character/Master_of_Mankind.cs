@@ -72,6 +72,15 @@ public class Emperor : PlaceholderCharacterModel
     public override string CustomMerchantAnimPath =>
         $"{MainFile.ResPath}/scenes/emperor/emperor_merchant.tscn";
 
+    public override string CustomArmPointingTexturePath =>
+        $"{MainFile.ResPath}/images/hands/multiplayer_hand_emperor_point.png";
+    public override string CustomArmRockTexturePath =>
+        $"{MainFile.ResPath}/images/hands/multiplayer_hand_emperor_rock.png";
+    public override string CustomArmPaperTexturePath =>
+        $"{MainFile.ResPath}/images/hands/multiplayer_hand_emperor_paper.png";
+    public override string CustomArmScissorsTexturePath =>
+        $"{MainFile.ResPath}/images/hands/multiplayer_hand_emperor_scissors.png";
+
     public override CreatureAnimator SetupCustomAnimationStates(MegaSprite controller)
     {
         // The current LoongBones rig only defines "idle". Map every combat trigger to that

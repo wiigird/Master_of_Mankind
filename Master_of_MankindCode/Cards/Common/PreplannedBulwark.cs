@@ -25,7 +25,7 @@ public sealed class PreplannedBulwark : Master_of_MankindCard
     public override bool GainsBlock => true;
 
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state);
+        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state, Owner.Creature);
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -36,7 +36,9 @@ public sealed class PreplannedBulwark : Master_of_MankindCard
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         bool hasIncomingAttack = CombatState is { } combatState
-                                 && ForesightPredictionService.AnyNextRevealedActionIsAttack(combatState);
+                                 && ForesightPredictionService.AnyNextRevealedActionIsAttack(
+                                     combatState,
+                                     Owner.Creature);
 
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         if (hasIncomingAttack)

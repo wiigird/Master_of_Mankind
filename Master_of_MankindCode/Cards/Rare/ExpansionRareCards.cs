@@ -32,11 +32,11 @@ public sealed class TheEmperorsSword() : Master_of_MankindCard(2, CardType.Attac
 public sealed class BaneOfHorus() : Master_of_MankindCard(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override bool ShouldGlowGoldInternal => CombatState is { } state
-        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state);
+        && ForesightPredictionService.AnyNextRevealedActionIsAttack(state, Owner.Creature);
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(24m, ValueProp.Move)];
     protected override Task OnPlay(PlayerChoiceContext c, CardPlay p)
-    { ArgumentNullException.ThrowIfNull(p.Target); int hits = ForesightPredictionService.IsNextRevealedActionAttack(p.Target) ? 2 : 1; return DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(hits).FromCard(this).Targeting(p.Target).Execute(c); }
+    { ArgumentNullException.ThrowIfNull(p.Target); int hits = ForesightPredictionService.IsNextRevealedActionAttack(p.Target, Owner.Creature) ? 2 : 1; return DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(hits).FromCard(this).Targeting(p.Target).Execute(c); }
     protected override void OnUpgrade() => DynamicVars.Damage.UpgradeValueBy(6);
 }
 

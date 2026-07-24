@@ -2,6 +2,7 @@ using System.Reflection;
 using HarmonyLib;
 using Master_of_Mankind.Master_of_MankindCode.Powers;
 using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
@@ -35,24 +36,29 @@ internal static class ForesightPredictionService
         PerformedMoveRef = AccessTools.FieldRefAccess<MoveState, bool>("_performedAtLeastOnce");
 
     private static ICombatState? _cachedCombatState;
+    private static int _cachedDepth;
     private static IReadOnlyDictionary<Creature, IReadOnlyList<PredictedMove>>? _cachedPredictions;
     private static readonly Dictionary<Type, MethodInfo> GenerateMoveMethods = [];
 
     public static int CacheVersion { get; private set; }
 
-    public static int GetPredictionDepth(ICombatState combatState)
+    public static int GetPredictionDepth(Creature observer)
     {
-        var depth = 0;
-        foreach (var creature in combatState.PlayerCreatures)
-        {
-            foreach (var power in creature.Powers)
-            {
-                if (power is EmperorsForesightPower)
-                    depth = Math.Max(depth, power.Amount);
-            }
-        }
+        if (!observer.IsAlive)
+            return 0;
 
-        return depth;
+        return observer.Powers
+            .OfType<EmperorsForesightPower>()
+            .Select(power => power.Amount)
+            .DefaultIfEmpty(0)
+            .Max();
+    }
+
+    public static int GetLocalPredictionDepth(ICombatState combatState)
+    {
+        Creature? localPlayer = combatState.PlayerCreatures
+            .FirstOrDefault(creature => LocalContext.IsMe(creature));
+        return localPlayer is null ? 0 : GetPredictionDepth(localPlayer);
     }
 
     public static IReadOnlyDictionary<Creature, IReadOnlyList<PredictedMove>> GetPredictions(
@@ -60,20 +66,22 @@ internal static class ForesightPredictionService
         int depth)
     {
         if (ReferenceEquals(_cachedCombatState, combatState)
+            && _cachedDepth == depth
             && _cachedPredictions != null)
             return _cachedPredictions;
 
         _cachedCombatState = combatState;
+        _cachedDepth = depth;
         _cachedPredictions = Predict(combatState, depth);
         return _cachedPredictions;
     }
 
-    public static bool IsNextRevealedActionAttack(Creature creature)
+    public static bool IsNextRevealedActionAttack(Creature creature, Creature observer)
     {
         if (creature.CombatState is not { } combatState)
             return false;
 
-        int depth = GetPredictionDepth(combatState);
+        int depth = GetObserverDepth(combatState, observer);
         if (depth <= 0
             || !GetPredictions(combatState, depth).TryGetValue(creature, out var moves)
             || moves.FirstOrDefault() is not { IsKnown: true } nextMove)
@@ -82,31 +90,31 @@ internal static class ForesightPredictionService
         return nextMove.Intents.Any(intent => intent is AttackIntent);
     }
 
-    public static bool IsNextRevealedActionKnown(Creature creature) =>
-        TryGetNextRevealedMove(creature, out _);
+    public static bool IsNextRevealedActionKnown(Creature creature, Creature observer) =>
+        TryGetNextRevealedMove(creature, observer, out _);
 
-    public static bool IsNextRevealedActionKnownNonAttack(Creature creature) =>
-        TryGetNextRevealedMove(creature, out PredictedMove? move)
+    public static bool IsNextRevealedActionKnownNonAttack(Creature creature, Creature observer) =>
+        TryGetNextRevealedMove(creature, observer, out PredictedMove? move)
         && move!.Intents.All(intent => intent is not AttackIntent);
 
-    public static bool AnyKnownNextAction(ICombatState combatState) =>
-        combatState.Enemies.Any(IsNextRevealedActionKnown);
+    public static bool AnyKnownNextAction(ICombatState combatState, Creature observer) =>
+        combatState.Enemies.Any(enemy => IsNextRevealedActionKnown(enemy, observer));
 
-    public static bool AnyNextRevealedActionIsAttack(ICombatState combatState) =>
-        combatState.Enemies.Any(IsNextRevealedActionAttack);
+    public static bool AnyNextRevealedActionIsAttack(ICombatState combatState, Creature observer) =>
+        combatState.Enemies.Any(enemy => IsNextRevealedActionAttack(enemy, observer));
 
-    public static bool AnyNextRevealedActionIsKnownNonAttack(ICombatState combatState) =>
-        combatState.Enemies.Any(IsNextRevealedActionKnownNonAttack);
+    public static bool AnyNextRevealedActionIsKnownNonAttack(ICombatState combatState, Creature observer) =>
+        combatState.Enemies.Any(enemy => IsNextRevealedActionKnownNonAttack(enemy, observer));
 
-    public static bool AnyRevealedActionIsKnown(ICombatState combatState) =>
-        combatState.Enemies.Any(creature => CountRevealedActions(creature) > 0);
+    public static bool AnyRevealedActionIsKnown(ICombatState combatState, Creature observer) =>
+        combatState.Enemies.Any(creature => CountRevealedActions(creature, observer) > 0);
 
-    public static int CountRevealedActions(Creature creature)
+    public static int CountRevealedActions(Creature creature, Creature observer)
     {
         if (creature.CombatState is not { } combatState)
             return 0;
 
-        int depth = GetPredictionDepth(combatState);
+        int depth = GetObserverDepth(combatState, observer);
         return depth > 0
                && GetPredictions(combatState, depth).TryGetValue(creature, out var moves)
             ? moves.Count(move => move.IsKnown)
@@ -116,17 +124,21 @@ internal static class ForesightPredictionService
     public static void Invalidate()
     {
         _cachedCombatState = null;
+        _cachedDepth = 0;
         _cachedPredictions = null;
         unchecked { CacheVersion++; }
     }
 
-    private static bool TryGetNextRevealedMove(Creature creature, out PredictedMove? move)
+    private static bool TryGetNextRevealedMove(
+        Creature creature,
+        Creature observer,
+        out PredictedMove? move)
     {
         move = null;
         if (creature.CombatState is not { } combatState)
             return false;
 
-        int depth = GetPredictionDepth(combatState);
+        int depth = GetObserverDepth(combatState, observer);
         if (depth <= 0
             || !GetPredictions(combatState, depth).TryGetValue(creature, out var moves)
             || moves.FirstOrDefault() is not { IsKnown: true } knownMove)
@@ -135,6 +147,11 @@ internal static class ForesightPredictionService
         move = knownMove;
         return true;
     }
+
+    private static int GetObserverDepth(ICombatState combatState, Creature observer) =>
+        ReferenceEquals(observer.CombatState, combatState)
+            ? GetPredictionDepth(observer)
+            : 0;
 
     private static IReadOnlyDictionary<Creature, IReadOnlyList<PredictedMove>> Predict(
         ICombatState combatState,

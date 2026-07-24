@@ -39,11 +39,10 @@ A mod release should contain only these runtime files in a `Master_of_Mankind` f
 
 ## Project Status
 
-Current version: `v0.1.2`
+Current version: `v0.1.3`
 
 ## Steam Workshop
 
 The published mod is available on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3766953732).
 
 This is an unofficial, non-commercial fan-made mod. It is not affiliated with or endorsed by Games Workshop or Mega Crit. Warhammer 40,000 and related names, characters, and imagery belong to their respective rights holders. If a rights holder requests removal or modification, this item will be made private and removed promptly.
-

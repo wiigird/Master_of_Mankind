@@ -22,12 +22,12 @@ public sealed class TheGoldenPathPower : Master_of_MankindPower
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext c, Player player)
     {
         if (!ReferenceEquals(Owner.Player, player) || Owner.CombatState is not { } state) return;
-        if (ForesightPredictionService.AnyNextRevealedActionIsAttack(state))
+        if (ForesightPredictionService.AnyNextRevealedActionIsAttack(state, Owner))
         {
             Flash();
             await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
         }
-        else if (ForesightPredictionService.AnyKnownNextAction(state))
+        else if (ForesightPredictionService.AnyKnownNextAction(state, Owner))
         {
             Flash();
             await CardPileCmd.Draw(c, 1, player);
@@ -114,12 +114,12 @@ public sealed class PrescienceIncarnatePower : Master_of_MankindPower
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext c, Player player)
     {
         if (!ReferenceEquals(Owner.Player, player) || Owner.CombatState is not { } state) return;
-        if (ForesightPredictionService.AnyNextRevealedActionIsAttack(state))
+        if (ForesightPredictionService.AnyNextRevealedActionIsAttack(state, Owner))
         {
             Flash();
             await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Unpowered, null);
         }
-        else if (ForesightPredictionService.AnyKnownNextAction(state))
+        else if (ForesightPredictionService.AnyKnownNextAction(state, Owner))
         {
             Flash();
             await PlayerCmd.GainEnergy(1, player);

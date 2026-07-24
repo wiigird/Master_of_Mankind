@@ -12,12 +12,11 @@ internal static class ForesightUiPatches
 {
     private static void Postfix(NCreature __instance)
     {
-        if (__instance.Entity.CombatState is not { } combatState
-            || ForesightPredictionService.GetPredictionDepth(combatState) <= 0)
+        if (__instance.Entity.CombatState is not { })
             return;
 
         // UpdateIntent is the authoritative point where an enemy's live move changes.
-        // Invalidate once here instead of rebuilding a string representation on every query.
+        // Always refresh so a dead local player's stale Foresight timeline is also removed.
         ForesightPredictionService.Invalidate();
         ForesightTimelineUi.RefreshDeferred(__instance);
     }
@@ -30,7 +29,7 @@ internal static class ForesightCreatureAddedPatch
     {
         if (creature.IsEnemy
             && creature.CombatState is { } combatState
-            && ForesightPredictionService.GetPredictionDepth(combatState) > 0)
+            && ForesightPredictionService.GetLocalPredictionDepth(combatState) > 0)
             TaskHelper.RunSafely(ForesightTimelineUi.RefreshAllEnemies(combatState));
     }
 }

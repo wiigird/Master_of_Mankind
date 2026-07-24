@@ -61,10 +61,7 @@ internal static class ForesightTimelineUi
             return;
 
         var combatState = creatureNode.Entity.CombatState;
-        var depth = ForesightPredictionService.GetPredictionDepth(combatState);
-        var staleTimeline = creatureNode.IntentContainer.GetNodeOrNull<HBoxContainer>(TimelineNodeName);
-        staleTimeline?.QueueFree();
-
+        var depth = ForesightPredictionService.GetLocalPredictionDepth(combatState);
         var existing = creatureNode.GetNodeOrNull<HBoxContainer>(TimelineNodeName);
         if (depth <= 0)
         {
